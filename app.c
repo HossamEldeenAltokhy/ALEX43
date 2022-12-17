@@ -9,37 +9,30 @@
 #include <xc.h>
 #include <util/delay.h>
 
+#define test_led   0
+#define push_btn   0
+
 int main(void) {
     // Static Design
-    //Data Direction Register
-    DDRA = 0xFF; // All pins as outputs
-    PORTA = 0x01; // PA0 = ON
-    char key = 0;
+    //PORTA as output
+    DDRA |= (1 << test_led);
+    DDRC &= ~(1 << push_btn); // Reset 
+
+    // Turn off test_led.
+    PORTA &= ~(1 << test_led);
     // Dynamic Design
     while (1) {
 
-        _delay_ms(500);
-        if (!key) {
-            PORTA *= 2;
-        }
-        else{
-            PORTA /= 2;
+        if (PINC & (1 << push_btn)) {
+            PORTA |= (1 << test_led);
+        } else {
+            PORTA &= ~(1 << test_led);
         }
 
-        if (PORTA == 0x80) {
-            key = 1;
-        }
-        if(PORTA == 0x01){
-            key = 0;
-        }
+
     }
 
     return 0;
 }
 
-// Bitwise Masking
-/*
- DDRA |= (1<<n);
- DDRA &= ~(1<<n);
- DDRA ^= (1<<n);
- */
+

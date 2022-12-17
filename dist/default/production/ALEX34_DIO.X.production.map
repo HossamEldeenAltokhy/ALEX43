@@ -327,20 +327,20 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000      0x7d0
+.debug_info     0x0000000000000000      0x711
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x0000000000000000      0x4e6 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_info    0x00000000000004e6      0x2ea build/default/production/app.o
+ .debug_info    0x00000000000004e6      0x22b build/default/production/app.o
 
-.debug_abbrev   0x0000000000000000      0x563
+.debug_abbrev   0x0000000000000000      0x4ee
  *(.debug_abbrev)
  .debug_abbrev  0x0000000000000000      0x4a3 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_abbrev  0x00000000000004a3       0xc0 build/default/production/app.o
+ .debug_abbrev  0x00000000000004a3       0x4b build/default/production/app.o
 
-.debug_line     0x0000000000000000      0x226
+.debug_line     0x0000000000000000      0x1b1
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x0000000000000000      0x119 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_line    0x0000000000000119      0x10d build/default/production/app.o
+ .debug_line    0x0000000000000119       0x98 build/default/production/app.o
 
 .debug_frame    0x0000000000000000       0x24
  *(.debug_frame)
@@ -351,9 +351,8 @@ END GROUP
  .debug_str     0x0000000000000000      0x196 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
  .debug_str     0x0000000000000196        0x0 build/default/production/app.o
 
-.debug_loc      0x0000000000000000       0x98
+.debug_loc
  *(.debug_loc)
- .debug_loc     0x0000000000000000       0x98 build/default/production/app.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -388,30 +387,30 @@ LOAD data_init
  .note.gnu.avr.deviceinfo
                 0x0000000000000000       0x3c C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
 
-.text.main      0x000000000000006c       0x4e
- .text.main     0x000000000000006c       0x4e build/default/production/app.o
+.text.main      0x000000000000006c       0x12
+ .text.main     0x000000000000006c       0x12 build/default/production/app.o
                 0x000000000000006c                main
 
-.text           0x00000000000000ba        0x4
- .text          0x00000000000000ba        0x4 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
-                0x00000000000000ba                __vector_1
-                0x00000000000000ba                __vector_12
-                0x00000000000000ba                __bad_interrupt
-                0x00000000000000ba                __vector_6
-                0x00000000000000ba                __vector_3
-                0x00000000000000ba                __vector_11
-                0x00000000000000ba                __vector_13
-                0x00000000000000ba                __vector_17
-                0x00000000000000ba                __vector_19
-                0x00000000000000ba                __vector_7
-                0x00000000000000ba                __vector_5
-                0x00000000000000ba                __vector_4
-                0x00000000000000ba                __vector_9
-                0x00000000000000ba                __vector_2
-                0x00000000000000ba                __vector_15
-                0x00000000000000ba                __vector_8
-                0x00000000000000ba                __vector_14
-                0x00000000000000ba                __vector_10
-                0x00000000000000ba                __vector_16
-                0x00000000000000ba                __vector_18
-                0x00000000000000ba                __vector_20
+.text           0x000000000000007e        0x4
+ .text          0x000000000000007e        0x4 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
+                0x000000000000007e                __vector_1
+                0x000000000000007e                __vector_12
+                0x000000000000007e                __bad_interrupt
+                0x000000000000007e                __vector_6
+                0x000000000000007e                __vector_3
+                0x000000000000007e                __vector_11
+                0x000000000000007e                __vector_13
+                0x000000000000007e                __vector_17
+                0x000000000000007e                __vector_19
+                0x000000000000007e                __vector_7
+                0x000000000000007e                __vector_5
+                0x000000000000007e                __vector_4
+                0x000000000000007e                __vector_9
+                0x000000000000007e                __vector_2
+                0x000000000000007e                __vector_15
+                0x000000000000007e                __vector_8
+                0x000000000000007e                __vector_14
+                0x000000000000007e                __vector_10
+                0x000000000000007e                __vector_16
+                0x000000000000007e                __vector_18
+                0x000000000000007e                __vector_20
