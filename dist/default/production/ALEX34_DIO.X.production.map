@@ -10,6 +10,15 @@ Discarded input sections
  .text          0x0000000000000000        0x0 build/default/production/app.o
  .data          0x0000000000000000        0x0 build/default/production/app.o
  .bss           0x0000000000000000        0x0 build/default/production/app.o
+ .text.readPin  0x0000000000000000       0x5c build/default/production/app.o
+ .text.setportOUT
+                0x0000000000000000       0x28 build/default/production/app.o
+ .text.setportIN
+                0x0000000000000000       0x20 build/default/production/app.o
+ .text.setpinOUT
+                0x0000000000000000       0x68 build/default/production/app.o
+ .text.setpinIN
+                0x0000000000000000       0x70 build/default/production/app.o
  .text          0x0000000000000000        0x0 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_exit.o)
  .data          0x0000000000000000        0x0 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_exit.o)
  .bss           0x0000000000000000        0x0 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_exit.o)
@@ -319,40 +328,41 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x0000000000000000       0x20
+.debug_aranges  0x0000000000000000       0x48
  *(.debug_aranges)
  .debug_aranges
-                0x0000000000000000       0x20 build/default/production/app.o
+                0x0000000000000000       0x48 build/default/production/app.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000      0x711
+.debug_info     0x0000000000000000      0x8ae
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x0000000000000000      0x4e6 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_info    0x00000000000004e6      0x22b build/default/production/app.o
+ .debug_info    0x00000000000004e6      0x3c8 build/default/production/app.o
 
-.debug_abbrev   0x0000000000000000      0x4ee
+.debug_abbrev   0x0000000000000000      0x5b1
  *(.debug_abbrev)
  .debug_abbrev  0x0000000000000000      0x4a3 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_abbrev  0x00000000000004a3       0x4b build/default/production/app.o
+ .debug_abbrev  0x00000000000004a3      0x10e build/default/production/app.o
 
-.debug_line     0x0000000000000000      0x1b1
+.debug_line     0x0000000000000000      0x2f1
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x0000000000000000      0x119 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_line    0x0000000000000119       0x98 build/default/production/app.o
+ .debug_line    0x0000000000000119      0x1d8 build/default/production/app.o
 
-.debug_frame    0x0000000000000000       0x24
+.debug_frame    0x0000000000000000       0x74
  *(.debug_frame)
- .debug_frame   0x0000000000000000       0x24 build/default/production/app.o
+ .debug_frame   0x0000000000000000       0x74 build/default/production/app.o
 
-.debug_str      0x0000000000000000      0x196
+.debug_str      0x0000000000000000      0x1a6
  *(.debug_str)
  .debug_str     0x0000000000000000      0x196 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_str     0x0000000000000196        0x0 build/default/production/app.o
+ .debug_str     0x0000000000000196       0x10 build/default/production/app.o
 
-.debug_loc
+.debug_loc      0x0000000000000000      0x205
  *(.debug_loc)
+ .debug_loc     0x0000000000000000      0x205 build/default/production/app.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -372,9 +382,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x0000000000000000       0x10
+.debug_ranges   0x0000000000000000       0x38
  *(.debug_ranges)
- .debug_ranges  0x0000000000000000       0x10 build/default/production/app.o
+ .debug_ranges  0x0000000000000000       0x38 build/default/production/app.o
 
 .debug_macro
  *(.debug_macro)
