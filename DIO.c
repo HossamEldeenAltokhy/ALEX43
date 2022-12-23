@@ -1,8 +1,7 @@
 #include <xc.h>
 #include "DIO.h"
 
-
-char readPin(char portName, char pinNum) {
+char isPressed(char portName, char pinNum) {
 
     switch (portName) {
         case PA:
@@ -125,6 +124,40 @@ void resetpin(char portName, char pinNum) {
             break;
         case PD:
             PORTD &= ~(1 << pinNum);
+            break;
+    }
+}
+
+void setport(char portName) {
+    switch (portName) {
+        case PA:
+            PORTA = 0xFF;
+            break;
+        case PB:
+            PORTB = 0xFF;
+            break;
+        case PD:
+            PORTD = 0xFF;
+            break;
+        case PC:
+            PORTC = 0xFF;
+            break;
+    }
+}
+
+void resetport(char portName) {
+    switch (portName) {
+        case PA:
+            PORTA = 0x00;
+            break;
+        case PB:
+            PORTB = 0x00;
+            break;
+        case PD:
+            PORTD = 0x00;
+            break;
+        case PC:
+            PORTC = 0x00;
             break;
     }
 }
