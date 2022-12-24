@@ -50,14 +50,19 @@ int main(void) {
         // LED0
         if(isPressed(BTN0)){
             LED_on(LED0);
+            Relay_on();
         }else{
             LED_off(LED0);
+            Relay_off();
+
         }
         // LED1
         if(isPressed(BTN1)){
             LED_on(LED1);
+            Buzzer_on();
         }else{
             LED_off(LED1);
+            Buzzer_off();
         }
         // LED2
         if(isPressed(BTN2)){
