@@ -22,31 +22,22 @@ int main(void) {
 
     // Dynamic Design
     while (1) {
-// Case push button 0
+        // Case push button 0
 
         if (isPressed(PC, push_btn0)) {
-            setpin(PA, led0);
-            setpin(PA, led1);
-            setpin(PA, led2);
-            setpin(PA, led3);
+            PORTA++;
+            _delay_ms(500);
         } else {
-            resetpin(PA, led0);
-            resetpin(PA, led1);
-            resetpin(PA, led2);
-            resetpin(PA, led3);
+
         }
 
-// Case push button 1
+        // Case push button 1
         if (isPressed(PD, push_btn1)) {
-            setpin(PA, led4);
-            setpin(PA, led5);
-            setpin(PA, led6);
-            setpin(PA, led7);
+            PORTA--;
+            _delay_ms(500);
+
         } else {
-            resetpin(PA, led4);
-            resetpin(PA, led5);
-            resetpin(PA, led6);
-            resetpin(PA, led7);
+
         }
 
     }

@@ -17,6 +17,9 @@ Discarded input sections
                 0x0000000000000000       0x20 build/default/production/DIO.o
  .text.setpinOUT
                 0x0000000000000000       0x68 build/default/production/DIO.o
+ .text.setpin   0x0000000000000000       0x68 build/default/production/DIO.o
+ .text.resetpin
+                0x0000000000000000       0x70 build/default/production/DIO.o
  .text.setport  0x0000000000000000       0x28 build/default/production/DIO.o
  .text          0x0000000000000000        0x0 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_exit.o)
  .data          0x0000000000000000        0x0 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_exit.o)
@@ -339,38 +342,39 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000      0xd4b
+.debug_info     0x0000000000000000      0xca8
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x0000000000000000      0x4e6 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_info    0x00000000000004e6      0x477 build/default/production/app.o
- .debug_info    0x000000000000095d      0x3ee build/default/production/DIO.o
+ .debug_info    0x00000000000004e6      0x3d4 build/default/production/app.o
+ .debug_info    0x00000000000008ba      0x3ee build/default/production/DIO.o
 
-.debug_abbrev   0x0000000000000000      0x5c5
+.debug_abbrev   0x0000000000000000      0x643
  *(.debug_abbrev)
  .debug_abbrev  0x0000000000000000      0x4a3 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_abbrev  0x00000000000004a3       0x88 build/default/production/app.o
- .debug_abbrev  0x000000000000052b       0x9a build/default/production/DIO.o
+ .debug_abbrev  0x00000000000004a3      0x106 build/default/production/app.o
+ .debug_abbrev  0x00000000000005a9       0x9a build/default/production/DIO.o
 
-.debug_line     0x0000000000000000      0x47a
+.debug_line     0x0000000000000000      0x4c1
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x0000000000000000      0x119 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_line    0x0000000000000119       0xc0 build/default/production/app.o
- .debug_line    0x00000000000001d9      0x2a1 build/default/production/DIO.o
+ .debug_line    0x0000000000000119      0x107 build/default/production/app.o
+ .debug_line    0x0000000000000220      0x2a1 build/default/production/DIO.o
 
 .debug_frame    0x0000000000000000       0xc8
  *(.debug_frame)
  .debug_frame   0x0000000000000000       0x24 build/default/production/app.o
  .debug_frame   0x0000000000000024       0xa4 build/default/production/DIO.o
 
-.debug_str      0x0000000000000000      0x1d7
+.debug_str      0x0000000000000000      0x1ce
  *(.debug_str)
  .debug_str     0x0000000000000000      0x196 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_str     0x0000000000000196       0x31 build/default/production/app.o
- .debug_str     0x00000000000001c7       0x10 build/default/production/DIO.o
+ .debug_str     0x0000000000000196       0x28 build/default/production/app.o
+ .debug_str     0x00000000000001be       0x10 build/default/production/DIO.o
 
-.debug_loc      0x0000000000000000      0x30d
+.debug_loc      0x0000000000000000      0x355
  *(.debug_loc)
- .debug_loc     0x0000000000000000      0x30d build/default/production/DIO.o
+ .debug_loc     0x0000000000000000       0x48 build/default/production/app.o
+ .debug_loc     0x0000000000000048      0x30d build/default/production/DIO.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -406,62 +410,53 @@ LOAD data_init
  .note.gnu.avr.deviceinfo
                 0x0000000000000000       0x3c C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
 
-.text.main      0x000000000000006c       0xba
- .text.main     0x000000000000006c       0xba build/default/production/app.o
-                0x000000000000006c                main
-
-.text.setpinIN  0x0000000000000126       0x70
+.text.setpinIN  0x000000000000006c       0x70
  .text.setpinIN
-                0x0000000000000126       0x70 build/default/production/DIO.o
-                0x0000000000000126                setpinIN
+                0x000000000000006c       0x70 build/default/production/DIO.o
+                0x000000000000006c                setpinIN
 
-.text.resetpin  0x0000000000000196       0x70
- .text.resetpin
-                0x0000000000000196       0x70 build/default/production/DIO.o
-                0x0000000000000196                resetpin
-
-.text.setpin    0x0000000000000206       0x68
- .text.setpin   0x0000000000000206       0x68 build/default/production/DIO.o
-                0x0000000000000206                setpin
+.text.main      0x00000000000000dc       0x66
+ .text.main     0x00000000000000dc       0x66 build/default/production/app.o
+                0x00000000000000dc                main
 
 .text.isPressed
-                0x000000000000026e       0x5c
+                0x0000000000000142       0x5c
  .text.isPressed
-                0x000000000000026e       0x5c build/default/production/DIO.o
-                0x000000000000026e                isPressed
+                0x0000000000000142       0x5c build/default/production/DIO.o
+                0x0000000000000142                isPressed
 
 .text.setportOUT
-                0x00000000000002ca       0x28
+                0x000000000000019e       0x28
  .text.setportOUT
-                0x00000000000002ca       0x28 build/default/production/DIO.o
-                0x00000000000002ca                setportOUT
+                0x000000000000019e       0x28 build/default/production/DIO.o
+                0x000000000000019e                setportOUT
 
 .text.resetport
-                0x00000000000002f2       0x20
+                0x00000000000001c6       0x20
  .text.resetport
-                0x00000000000002f2       0x20 build/default/production/DIO.o
-                0x00000000000002f2                resetport
+                0x00000000000001c6       0x20 build/default/production/DIO.o
+                0x00000000000001c6                resetport
 
-.text           0x0000000000000312        0x4
- .text          0x0000000000000312        0x4 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
-                0x0000000000000312                __vector_1
-                0x0000000000000312                __vector_12
-                0x0000000000000312                __bad_interrupt
-                0x0000000000000312                __vector_6
-                0x0000000000000312                __vector_3
-                0x0000000000000312                __vector_11
-                0x0000000000000312                __vector_13
-                0x0000000000000312                __vector_17
-                0x0000000000000312                __vector_19
-                0x0000000000000312                __vector_7
-                0x0000000000000312                __vector_5
-                0x0000000000000312                __vector_4
-                0x0000000000000312                __vector_9
-                0x0000000000000312                __vector_2
-                0x0000000000000312                __vector_15
-                0x0000000000000312                __vector_8
-                0x0000000000000312                __vector_14
-                0x0000000000000312                __vector_10
-                0x0000000000000312                __vector_16
-                0x0000000000000312                __vector_18
-                0x0000000000000312                __vector_20
+.text           0x00000000000001e6        0x4
+ .text          0x00000000000001e6        0x4 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
+                0x00000000000001e6                __vector_1
+                0x00000000000001e6                __vector_12
+                0x00000000000001e6                __bad_interrupt
+                0x00000000000001e6                __vector_6
+                0x00000000000001e6                __vector_3
+                0x00000000000001e6                __vector_11
+                0x00000000000001e6                __vector_13
+                0x00000000000001e6                __vector_17
+                0x00000000000001e6                __vector_19
+                0x00000000000001e6                __vector_7
+                0x00000000000001e6                __vector_5
+                0x00000000000001e6                __vector_4
+                0x00000000000001e6                __vector_9
+                0x00000000000001e6                __vector_2
+                0x00000000000001e6                __vector_15
+                0x00000000000001e6                __vector_8
+                0x00000000000001e6                __vector_14
+                0x00000000000001e6                __vector_10
+                0x00000000000001e6                __vector_16
+                0x00000000000001e6                __vector_18
+                0x00000000000001e6                __vector_20
