@@ -66,10 +66,10 @@ void setpinOUT(char portName, char pinNum) {
             DDRB |= (1 << pinNum);
             break;
         case PC:
-            DDRD |= (1 << pinNum);
+            DDRC |= (1 << pinNum);
             break;
         case PD:
-            DDRC |= (1 << pinNum);
+            DDRD |= (1 << pinNum);
             break;
     }
 }

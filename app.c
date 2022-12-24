@@ -45,7 +45,6 @@ void kit_setup();
 int main(void) {
     // Static Design
     kit_setup();
-    _delay_ms(500);
     // Dynamic Design
     while (1) {
         // LED0
@@ -110,7 +109,6 @@ void Relay_off() {
 void init_LEDs() {
     // IO Configurations
     setpinOUT(PC, LED0);
-    _delay_ms(50);
     setpinOUT(PC, LED1);
     setpinOUT(PD, LED2);
     // reset LEDs

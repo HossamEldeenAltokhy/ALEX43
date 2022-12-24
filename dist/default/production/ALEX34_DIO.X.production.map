@@ -345,23 +345,23 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000     0x115c
+.debug_info     0x0000000000000000     0x106e
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x0000000000000000      0x4e6 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_info    0x00000000000004e6      0x88a build/default/production/app.o
- .debug_info    0x0000000000000d70      0x3ec build/default/production/DIO.o
+ .debug_info    0x00000000000004e6      0x79c build/default/production/app.o
+ .debug_info    0x0000000000000c82      0x3ec build/default/production/DIO.o
 
-.debug_abbrev   0x0000000000000000      0x6cc
+.debug_abbrev   0x0000000000000000      0x63c
  *(.debug_abbrev)
  .debug_abbrev  0x0000000000000000      0x4a3 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_abbrev  0x00000000000004a3      0x18f build/default/production/app.o
- .debug_abbrev  0x0000000000000632       0x9a build/default/production/DIO.o
+ .debug_abbrev  0x00000000000004a3       0xff build/default/production/app.o
+ .debug_abbrev  0x00000000000005a2       0x9a build/default/production/DIO.o
 
-.debug_line     0x0000000000000000      0x6b6
+.debug_line     0x0000000000000000      0x618
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x0000000000000000      0x119 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_line    0x0000000000000119      0x2fc build/default/production/app.o
- .debug_line    0x0000000000000415      0x2a1 build/default/production/DIO.o
+ .debug_line    0x0000000000000119      0x25e build/default/production/app.o
+ .debug_line    0x0000000000000377      0x2a1 build/default/production/DIO.o
 
 .debug_frame    0x0000000000000000      0x188
  *(.debug_frame)
@@ -374,10 +374,10 @@ END GROUP
  .debug_str     0x0000000000000196       0x27 build/default/production/app.o
  .debug_str     0x00000000000001bd       0x10 build/default/production/DIO.o
 
-.debug_loc      0x0000000000000000      0x499
+.debug_loc      0x0000000000000000      0x451
  *(.debug_loc)
- .debug_loc     0x0000000000000000      0x18c build/default/production/app.o
- .debug_loc     0x000000000000018c      0x30d build/default/production/DIO.o
+ .debug_loc     0x0000000000000000      0x144 build/default/production/app.o
+ .debug_loc     0x0000000000000144      0x30d build/default/production/DIO.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -433,90 +433,90 @@ LOAD data_init
  .text.setpin   0x00000000000001b4       0x68 build/default/production/DIO.o
                 0x00000000000001b4                setpin
 
-.text.main      0x000000000000021c       0x60
- .text.main     0x000000000000021c       0x60 build/default/production/app.o
-                0x000000000000021c                main
+.text.readPin   0x000000000000021c       0x5c
+ .text.readPin  0x000000000000021c       0x5c build/default/production/DIO.o
+                0x000000000000021c                readPin
 
-.text.readPin   0x000000000000027c       0x5c
- .text.readPin  0x000000000000027c       0x5c build/default/production/DIO.o
-                0x000000000000027c                readPin
+.text.LED_on    0x0000000000000278       0x4e
+ .text.LED_on   0x0000000000000278       0x4e build/default/production/app.o
+                0x0000000000000278                LED_on
 
-.text.LED_on    0x00000000000002d8       0x4e
- .text.LED_on   0x00000000000002d8       0x4e build/default/production/app.o
-                0x00000000000002d8                LED_on
+.text.LED_off   0x00000000000002c6       0x4e
+ .text.LED_off  0x00000000000002c6       0x4e build/default/production/app.o
+                0x00000000000002c6                LED_off
 
-.text.LED_off   0x0000000000000326       0x4e
- .text.LED_off  0x0000000000000326       0x4e build/default/production/app.o
-                0x0000000000000326                LED_off
-
-.text.init_LEDs
-                0x0000000000000374       0x3e
- .text.init_LEDs
-                0x0000000000000374       0x3e build/default/production/app.o
-                0x0000000000000374                init_LEDs
+.text.main      0x0000000000000314       0x4e
+ .text.main     0x0000000000000314       0x4e build/default/production/app.o
+                0x0000000000000314                main
 
 .text.isPressed
-                0x00000000000003b2       0x2e
+                0x0000000000000362       0x2e
  .text.isPressed
-                0x00000000000003b2       0x2e build/default/production/app.o
-                0x00000000000003b2                isPressed
+                0x0000000000000362       0x2e build/default/production/app.o
+                0x0000000000000362                isPressed
+
+.text.init_LEDs
+                0x0000000000000390       0x2c
+ .text.init_LEDs
+                0x0000000000000390       0x2c build/default/production/app.o
+                0x0000000000000390                init_LEDs
 
 .text.init_BTNs
-                0x00000000000003e0       0x1a
+                0x00000000000003bc       0x1a
  .text.init_BTNs
-                0x00000000000003e0       0x1a build/default/production/app.o
-                0x00000000000003e0                init_BTNs
+                0x00000000000003bc       0x1a build/default/production/app.o
+                0x00000000000003bc                init_BTNs
 
 .text.kit_setup
-                0x00000000000003fa       0x12
+                0x00000000000003d6       0x12
  .text.kit_setup
-                0x00000000000003fa       0x12 build/default/production/app.o
-                0x00000000000003fa                kit_setup
+                0x00000000000003d6       0x12 build/default/production/app.o
+                0x00000000000003d6                kit_setup
 
 .text.init_Buzzer
-                0x000000000000040c        0xe
+                0x00000000000003e8        0xe
  .text.init_Buzzer
-                0x000000000000040c        0xe build/default/production/app.o
-                0x000000000000040c                init_Buzzer
+                0x00000000000003e8        0xe build/default/production/app.o
+                0x00000000000003e8                init_Buzzer
 
 .text.init_Relay
-                0x000000000000041a        0xe
+                0x00000000000003f6        0xe
  .text.init_Relay
-                0x000000000000041a        0xe build/default/production/app.o
-                0x000000000000041a                init_Relay
+                0x00000000000003f6        0xe build/default/production/app.o
+                0x00000000000003f6                init_Relay
 
 .text.Buzzer_off
-                0x0000000000000428        0xa
+                0x0000000000000404        0xa
  .text.Buzzer_off
-                0x0000000000000428        0xa build/default/production/app.o
-                0x0000000000000428                Buzzer_off
+                0x0000000000000404        0xa build/default/production/app.o
+                0x0000000000000404                Buzzer_off
 
 .text.Relay_off
-                0x0000000000000432        0xa
+                0x000000000000040e        0xa
  .text.Relay_off
-                0x0000000000000432        0xa build/default/production/app.o
-                0x0000000000000432                Relay_off
+                0x000000000000040e        0xa build/default/production/app.o
+                0x000000000000040e                Relay_off
 
-.text           0x000000000000043c        0x4
- .text          0x000000000000043c        0x4 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
-                0x000000000000043c                __vector_1
-                0x000000000000043c                __vector_12
-                0x000000000000043c                __bad_interrupt
-                0x000000000000043c                __vector_6
-                0x000000000000043c                __vector_3
-                0x000000000000043c                __vector_11
-                0x000000000000043c                __vector_13
-                0x000000000000043c                __vector_17
-                0x000000000000043c                __vector_19
-                0x000000000000043c                __vector_7
-                0x000000000000043c                __vector_5
-                0x000000000000043c                __vector_4
-                0x000000000000043c                __vector_9
-                0x000000000000043c                __vector_2
-                0x000000000000043c                __vector_15
-                0x000000000000043c                __vector_8
-                0x000000000000043c                __vector_14
-                0x000000000000043c                __vector_10
-                0x000000000000043c                __vector_16
-                0x000000000000043c                __vector_18
-                0x000000000000043c                __vector_20
+.text           0x0000000000000418        0x4
+ .text          0x0000000000000418        0x4 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
+                0x0000000000000418                __vector_1
+                0x0000000000000418                __vector_12
+                0x0000000000000418                __bad_interrupt
+                0x0000000000000418                __vector_6
+                0x0000000000000418                __vector_3
+                0x0000000000000418                __vector_11
+                0x0000000000000418                __vector_13
+                0x0000000000000418                __vector_17
+                0x0000000000000418                __vector_19
+                0x0000000000000418                __vector_7
+                0x0000000000000418                __vector_5
+                0x0000000000000418                __vector_4
+                0x0000000000000418                __vector_9
+                0x0000000000000418                __vector_2
+                0x0000000000000418                __vector_15
+                0x0000000000000418                __vector_8
+                0x0000000000000418                __vector_14
+                0x0000000000000418                __vector_10
+                0x0000000000000418                __vector_16
+                0x0000000000000418                __vector_18
+                0x0000000000000418                __vector_20
