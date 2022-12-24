@@ -32,7 +32,7 @@ void setpinOUT(char portName, char pinNum);
 void setpinIN(char portName, char pinNum);
 
 // Special
-char isPressed(char portName, char pinNum);
+char readPin(char portName, char pinNum);
 
 void setpin(char portName, char pinNum);
 void resetpin(char portName, char pinNum);

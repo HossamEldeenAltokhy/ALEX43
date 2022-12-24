@@ -1,7 +1,7 @@
 #include <xc.h>
 #include "DIO.h"
 
-char isPressed(char portName, char pinNum) {
+char readPin(char portName, char pinNum) {
 
     switch (portName) {
         case PA:
