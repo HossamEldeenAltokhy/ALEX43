@@ -9,179 +9,120 @@
 #include <xc.h>
 #include <util/delay.h>
 #include "DIO.h"
+#include "mkit.h"
+#include <stdlib.h>
+
+#define LCD_DATA    PA
+#define LCD_CONTROL PB
+#define LCD_RS      PB7
+#define LCD_RW      PB0
+#define LCD_EN      PB2
+
+// Commands
+/**
+ * 
+ */
+#define LCD_cmd_CLEAR            0x01
+#define LCD_cmd_ENTRY_MODE       0x06   
+#define LCD_cmd_8bit_2lines_MODE 0x38
+#define LCD_cmd_D_ON_C_OFF       0x0C
+
+#define LCD_cmd_return_home      0x02
+
+void lcd_init();
+void lcd_data(char data);
+void lcd_data_str(char * pData);
 
 
-#define LED0   PC2  // 2
-#define LED1   PC7  // 7
-#define LED2   PD3  // 3
+void lcd_cmd(char cmd);
+void lcd_enable();
+void lcd_data_num(int num);
 
-#define BTN0   PB0   
-#define BTN1   PD6
-#define BTN2   PD2
-
-#define Relay  PA2
-#define Buzzer PA3
-
-#define ALL_LEDs  10
-
-// Buzzer functions
-void init_Buzzer();
-void Buzzer_on();
-void Buzzer_off();
-// Relay functions
-void init_Relay();
-void Relay_on();
-void Relay_off();
-// Buttons functions
-void init_BTNs();
-char isPressed(char BTN_number);
-// LEDS functions
-void init_LEDs();
-void LED_on(char LED_number);
-void LED_off(char LED_number);
-// Kit setup functions
-void kit_setup();
-
+char str[] = "Hello World!";
 int main(void) {
     // Static Design
-    kit_setup();
+
+    lcd_init();
+    int x = 102;
+
     // Dynamic Design
     while (1) {
-        // LED0
-        if(isPressed(BTN0)){
-            LED_on(LED0);
-            Relay_on();
-        }else{
-            LED_off(LED0);
-            Relay_off();
-
-        }
-        // LED1
-        if(isPressed(BTN1)){
-            LED_on(LED1);
-            Buzzer_on();
-        }else{
-            LED_off(LED1);
-            Buzzer_off();
-        }
-        // LED2
-        if(isPressed(BTN2)){
-            LED_on(LED2);
-        }else{
-            LED_off(LED2);
-        }
+        lcd_cmd(LCD_cmd_return_home);
+        lcd_data_num(x--);
+        _delay_ms(500);
     }
     return 0;
 }
 
-void kit_setup() {
-    init_BTNs();
-    init_LEDs();
-    init_Buzzer();
-    init_Relay();
-}
+void lcd_data_str(char * pData) {
 
-void init_Buzzer() {
-    // IO Configurations.
-    setpinOUT(PA, Buzzer);
-    // Buzzer reset.
-    Buzzer_off();
-}
-
-void Buzzer_on() {
-    setpin(PA, Buzzer);
-}
-
-void Buzzer_off() {
-    resetpin(PA, Buzzer);
-}
-
-void init_Relay() {
-    // IO Configurations.
-    setpinOUT(PA, Relay);
-    // Buzzer reset.
-    Relay_off();
-}
-
-void Relay_on() {
-    setpin(PA, Relay);
-}
-
-void Relay_off() {
-    resetpin(PA, Relay);
-}
-
-void init_LEDs() {
-    // IO Configurations
-    setpinOUT(PC, LED0);
-    setpinOUT(PC, LED1);
-    setpinOUT(PD, LED2);
-    // reset LEDs
-    LED_off(LED0);
-    LED_off(LED1);
-    LED_off(LED2);
-}
-
-void LED_on(char LED_number) {
-    switch (LED_number) {
-        case LED0:
-            setpin(PC, LED0);
-            break;
-        case LED1:
-            setpin(PC, LED1);
-            break;
-        case LED2:
-            setpin(PD, LED2);
-            break;
-        case ALL_LEDs:
-            setpin(PC, LED0);
-            setpin(PC, LED1);
-            setpin(PD, LED2);
-            break;
+    for (int index = 0; pData[index] != '\0'; index++) {
+        lcd_data(pData[index]);
     }
 }
 
-void LED_off(char LED_number) {
-    switch (LED_number) {
-        case LED0:
-            resetpin(PC, LED0);
-            break;
-        case LED1:
-            resetpin(PC, LED1);
-            break;
-        case LED2:
-            resetpin(PD, LED2);
-            break;
-        case ALL_LEDs:
-            resetpin(PC, LED0);
-            resetpin(PC, LED1);
-            resetpin(PD, LED2);
-            break;
-    }
+void lcd_enable() {
+    setpin(LCD_CONTROL, LCD_EN);
+    _delay_ms(10);
+    resetpin(LCD_CONTROL, LCD_EN);
 }
 
-void init_BTNs() {
-    // IO Configurations
-    setpinIN(PB, BTN0);
-    setpinIN(PD, BTN1);
-    setpinIN(PD, BTN2);
+/**
+ * This function is to initialize LCD device to Microcontroller
+ */
+void lcd_init() {
+    // PIN Configuration
+
+    // set LCD_DATA as OUT
+    setportOUT(LCD_DATA);
+    // set RS as output
+    setpinOUT(LCD_CONTROL, LCD_RS);
+    // set RW as output
+    setpinOUT(LCD_CONTROL, LCD_RW);
+    _delay_ms(5);
+    resetpin(LCD_CONTROL, LCD_RW); // (RW =0)
+    // set EN as output
+    setpinOUT(LCD_CONTROL, LCD_EN);
+    _delay_ms(5);
+    resetpin(LCD_CONTROL, LCD_EN); // (EN =0)
+
+
+
+    // LCD initialization ...
+
+    lcd_cmd(LCD_cmd_CLEAR); // CLEAR command
+    lcd_cmd(LCD_cmd_ENTRY_MODE);
+    lcd_cmd(LCD_cmd_8bit_2lines_MODE);
+    lcd_cmd(LCD_cmd_D_ON_C_OFF);
+
+    _delay_ms(50);
+
 }
 
-char isPressed(char BTN_number) {
+void lcd_data(char data) {
 
-    switch (BTN_number) {
-        case BTN0:
-            return readPin(PB, BTN0);
-            break;
-        case BTN1:
-            return readPin(PD, BTN1);
-            break;
-        case BTN2:
-            return readPin(PD, BTN2);
-            break;
-        default:
-            return 0;
-    }
+    // put data on DATA BUS
+    setDataPort(LCD_DATA, data);
+    // select LCD Data Register   (RS =1)
+    setpin(LCD_CONTROL, LCD_RS);
+    // Enable
+    lcd_enable();
 
+}
 
+void lcd_cmd(char cmd) {
+
+    // put data on DATA BUS
+    setDataPort(LCD_DATA, cmd);
+    // select LCD Instruction Register   (RS =0)
+    resetpin(LCD_CONTROL, LCD_RS);
+    // Enable
+    lcd_enable();
+
+}
+
+void lcd_data_num(int num){
+    char str[11];
+    itoa(num, str, 10);
+    lcd_data_str(str);
 }

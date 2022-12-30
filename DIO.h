@@ -40,6 +40,8 @@ void resetpin(char portName, char pinNum);
 void setport(char portName);
 void resetport(char portName);
 
+void setDataPort(char portName, char data);
+
 
 #endif	/* DIO_H */
 

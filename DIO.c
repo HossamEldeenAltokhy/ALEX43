@@ -161,3 +161,20 @@ void resetport(char portName) {
             break;
     }
 }
+
+void setDataPort(char portName, char data){
+        switch (portName) {
+        case PA:
+            PORTA = data;
+            break;
+        case PB:
+            PORTB = data;
+            break;
+        case PD:
+            PORTD = data;
+            break;
+        case PC:
+            PORTC = data;
+            break;
+    }
+}
