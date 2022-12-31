@@ -9,120 +9,87 @@
 #include <xc.h>
 #include <util/delay.h>
 #include "DIO.h"
+
+#include "mlcd.h"
 #include "mkit.h"
-#include <stdlib.h>
 
-#define LCD_DATA    PA
-#define LCD_CONTROL PB
-#define LCD_RS      PB7
-#define LCD_RW      PB0
-#define LCD_EN      PB2
+#define B0   0
+#define B1   1
+#define mled0   0
+#define mled1   1
 
-// Commands
-/**
- * 
- */
-#define LCD_cmd_CLEAR            0x01
-#define LCD_cmd_ENTRY_MODE       0x06   
-#define LCD_cmd_8bit_2lines_MODE 0x38
-#define LCD_cmd_D_ON_C_OFF       0x0C
+char str_led0_is_on[] = "LED0 is ON";
+char str_led1_is_on[] = "LED1 is ON";
+char str_led0_is_off[] = "LED0 is OFF";
+char str_led1_is_off[] = "LED1 is OFF";
 
-#define LCD_cmd_return_home      0x02
+void init_pushBTNS();
+void init_allLeds();
+char led0_status;
+char led1_status;
 
-void lcd_init();
-void lcd_data(char data);
-void lcd_data_str(char * pData);
-
-
-void lcd_cmd(char cmd);
-void lcd_enable();
-void lcd_data_num(int num);
-
-char str[] = "Hello World!";
 int main(void) {
     // Static Design
+    init_allLeds();
+    init_pushBTNS();
 
     lcd_init();
-    int x = 102;
+
+
+
 
     // Dynamic Design
     while (1) {
-        lcd_cmd(LCD_cmd_return_home);
-        lcd_data_num(x--);
-        _delay_ms(500);
+        if (readPin(PC, B0)) {
+            // LED0 is ON
+            if (!led0_status) {
+                setpin(PD, mled0);
+                lcd_clear();
+                lcd_data_str(str_led0_is_on);
+                led0_status = 1;
+            }
+
+        } else {
+            // LED0 is OFF
+            if (led0_status) {
+                resetpin(PD, mled0);
+                lcd_clear();
+                lcd_data_str(str_led0_is_off);
+                led0_status = 0;
+            }
+            
+        }
+
+        if (readPin(PC, B1)) {
+            // LED1 is ON
+           if (!led1_status) {
+                setpin(PD, mled1);
+                lcd_clear();
+                lcd_data_str(str_led1_is_on);
+                led1_status = 1;
+            }
+        } else {
+            // LED1 is OFF
+            if (led1_status) {
+                resetpin(PD, mled1);
+                lcd_clear();
+                lcd_data_str(str_led1_is_off);
+                led1_status = 0;
+            }
+        }
     }
     return 0;
 }
 
-void lcd_data_str(char * pData) {
-
-    for (int index = 0; pData[index] != '\0'; index++) {
-        lcd_data(pData[index]);
-    }
+void init_pushBTNS() {
+    setpinIN(PC, B0);
+    setpinIN(PC, B1);
 }
 
-void lcd_enable() {
-    setpin(LCD_CONTROL, LCD_EN);
-    _delay_ms(10);
-    resetpin(LCD_CONTROL, LCD_EN);
-}
+void init_allLeds() {
+    setpinOUT(PD, mled0);
+    setpinOUT(PD, mled1);
 
-/**
- * This function is to initialize LCD device to Microcontroller
- */
-void lcd_init() {
-    // PIN Configuration
-
-    // set LCD_DATA as OUT
-    setportOUT(LCD_DATA);
-    // set RS as output
-    setpinOUT(LCD_CONTROL, LCD_RS);
-    // set RW as output
-    setpinOUT(LCD_CONTROL, LCD_RW);
-    _delay_ms(5);
-    resetpin(LCD_CONTROL, LCD_RW); // (RW =0)
-    // set EN as output
-    setpinOUT(LCD_CONTROL, LCD_EN);
-    _delay_ms(5);
-    resetpin(LCD_CONTROL, LCD_EN); // (EN =0)
-
-
-
-    // LCD initialization ...
-
-    lcd_cmd(LCD_cmd_CLEAR); // CLEAR command
-    lcd_cmd(LCD_cmd_ENTRY_MODE);
-    lcd_cmd(LCD_cmd_8bit_2lines_MODE);
-    lcd_cmd(LCD_cmd_D_ON_C_OFF);
-
-    _delay_ms(50);
-
-}
-
-void lcd_data(char data) {
-
-    // put data on DATA BUS
-    setDataPort(LCD_DATA, data);
-    // select LCD Data Register   (RS =1)
-    setpin(LCD_CONTROL, LCD_RS);
-    // Enable
-    lcd_enable();
-
-}
-
-void lcd_cmd(char cmd) {
-
-    // put data on DATA BUS
-    setDataPort(LCD_DATA, cmd);
-    // select LCD Instruction Register   (RS =0)
-    resetpin(LCD_CONTROL, LCD_RS);
-    // Enable
-    lcd_enable();
-
-}
-
-void lcd_data_num(int num){
-    char str[11];
-    itoa(num, str, 10);
-    lcd_data_str(str);
+    resetpin(PD, mled0);
+    resetpin(PD, mled1);
 }
