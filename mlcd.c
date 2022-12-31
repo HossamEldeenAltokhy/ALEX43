@@ -3,10 +3,20 @@
 #include <stdlib.h>
 #include <util/delay.h>
 
-void lcd_clear(){
+/**
+ * This function is used to Clear the whole LCD.
+ */
+void lcd_clear() {
     lcd_cmd(LCD_cmd_CLEAR);
 }
 
+/**
+ * This Function is used to display String 'pData' on LCD.
+ * @param pData : Pointer to char 
+ * 
+ * char * pData = "Hello"; \n
+ * lcd_data_str(pData);
+ */
 void lcd_data_str(char * pData) {
 
     for (int index = 0; pData[index] != '\0'; index++) {
@@ -42,10 +52,11 @@ void lcd_init() {
 
 
     // LCD initialization ...
-
+    lcd_cmd(LCD_cmd_MODE);
     lcd_cmd(LCD_cmd_CLEAR); // CLEAR command
+    
     lcd_cmd(LCD_cmd_ENTRY_MODE);
-    lcd_cmd(LCD_cmd_8bit_2lines_MODE);
+    
     lcd_cmd(LCD_cmd_D_ON_C_OFF);
 
     _delay_ms(50);
@@ -54,6 +65,7 @@ void lcd_init() {
 
 void lcd_data(char data) {
 
+#ifdef LCD_8bit_MODE
     // put data on DATA BUS
     setDataPort(LCD_DATA, data);
     // select LCD Data Register   (RS =1)
@@ -61,20 +73,54 @@ void lcd_data(char data) {
     // Enable
     lcd_enable();
 
+#else
+    // select LCD Instruction Register   (RS =0)
+    setpin(LCD_CONTROL, LCD_RS);
+    LCD_DATA_PORT = (LCD_DATA_PORT & 0x0F) | (data & 0xF0);
+    // Enable
+    lcd_enable();
+
+    LCD_DATA_PORT = (LCD_DATA_PORT & 0x0F) | (data << 4);
+    // Enable
+    lcd_enable();
+#endif
+
 }
 
 void lcd_cmd(char cmd) {
 
+#ifdef LCD_8bit_MODE
     // put data on DATA BUS
     setDataPort(LCD_DATA, cmd);
     // select LCD Instruction Register   (RS =0)
     resetpin(LCD_CONTROL, LCD_RS);
     // Enable
     lcd_enable();
+#else
+    // select LCD Instruction Register   (RS =0)
+    resetpin(LCD_CONTROL, LCD_RS);
+    LCD_DATA_PORT = (LCD_DATA_PORT & 0x0F) | (cmd & 0xF0);
+    // Enable
+    lcd_enable();
 
+    LCD_DATA_PORT = (LCD_DATA_PORT & 0x0F) | (cmd << 4);
+    // Enable
+    lcd_enable();
+#endif
+
+
+
+
+
+
+
+    // Cmd 0x01    00000001
+    //0x0f == 00001111
+    //PORTA = xxxxxxxx
+    //(PORTA & 0x0F) == 0000xxxx
 }
 
-void lcd_data_num(int num){
+void lcd_data_num(int num) {
     char str[11];
     itoa(num, str, 10);
     lcd_data_str(str);

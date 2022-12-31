@@ -27,6 +27,7 @@ void init_pushBTNS();
 void init_allLeds();
 char led0_status;
 char led1_status;
+int x = 100;
 
 int main(void) {
     // Static Design
@@ -34,18 +35,16 @@ int main(void) {
     init_pushBTNS();
 
     lcd_init();
-
-
-
-
+    lcd_data_num(x);
     // Dynamic Design
     while (1) {
         if (readPin(PC, B0)) {
             // LED0 is ON
             if (!led0_status) {
                 setpin(PD, mled0);
+                x += 5;
                 lcd_clear();
-                lcd_data_str(str_led0_is_on);
+                lcd_data_num(x);
                 led0_status = 1;
             }
 
@@ -53,27 +52,26 @@ int main(void) {
             // LED0 is OFF
             if (led0_status) {
                 resetpin(PD, mled0);
-                lcd_clear();
-                lcd_data_str(str_led0_is_off);
+
                 led0_status = 0;
             }
-            
+
         }
 
         if (readPin(PC, B1)) {
             // LED1 is ON
-           if (!led1_status) {
+            if (!led1_status) {
                 setpin(PD, mled1);
+                x -= 5;
                 lcd_clear();
-                lcd_data_str(str_led1_is_on);
+                lcd_data_num(x);
                 led1_status = 1;
             }
         } else {
             // LED1 is OFF
             if (led1_status) {
                 resetpin(PD, mled1);
-                lcd_clear();
-                lcd_data_str(str_led1_is_off);
+
                 led1_status = 0;
             }
         }
