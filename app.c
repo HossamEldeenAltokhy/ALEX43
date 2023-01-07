@@ -13,81 +13,119 @@
 #include "mlcd.h"
 #include "mkit.h"
 
-#define B0   0
-#define B1   1
-#define mled0   0
-#define mled1   1
+/**
+ * 
+ * **Keypad
+ * 
+ * OUTPUT PINS: PORTC (0,1,2)
+ * INPUT PINS : PORTD (4,5,6,7)
+ * 
+ */
 
-char str_led0_is_on[] = "LED0 is ON";
-char str_led1_is_on[] = "LED1 is ON";
-char str_led0_is_off[] = "LED0 is OFF";
-char str_led1_is_off[] = "LED1 is OFF";
-
-void init_pushBTNS();
-void init_allLeds();
-char led0_status;
-char led1_status;
-int x = 100;
+char str[] = "Clicked!";
+char str1[] = "L1 Clicked!";
+char str2[] = "L2 Clicked!";
+char str3[] = "L3 Clicked!";
+char str4[] = "L4 Clicked!";
+void keypad_set_all_on();
+void keypad_reset_all_on();
+void keypad_scan();
+char keypad_activator = 1;
 
 int main(void) {
     // Static Design
-    init_allLeds();
-    init_pushBTNS();
-
     lcd_init();
-    lcd_data_num(x);
+    // keypad io configuration
+    setportOUT(PC);
+    setportIN(PD);
+    // delay
+    _delay_ms(5);
+
+
+    keypad_set_all_on();
+
+
+   
     // Dynamic Design
     while (1) {
-        if (readPin(PC, B0)) {
-            // LED0 is ON
-            if (!led0_status) {
-                setpin(PD, mled0);
-                x += 5;
-                lcd_clear();
-                lcd_data_num(x);
-                led0_status = 1;
-            }
-
-        } else {
-            // LED0 is OFF
-            if (led0_status) {
-                resetpin(PD, mled0);
-
-                led0_status = 0;
-            }
-
-        }
-
-        if (readPin(PC, B1)) {
-            // LED1 is ON
-            if (!led1_status) {
-                setpin(PD, mled1);
-                x -= 5;
-                lcd_clear();
-                lcd_data_num(x);
-                led1_status = 1;
-            }
-        } else {
-            // LED1 is OFF
-            if (led1_status) {
-                resetpin(PD, mled1);
-
-                led1_status = 0;
-            }
-        }
+        
+        keypad_scan();
+    
     }
     return 0;
 }
+void keypad_scan(){
+            keypad_set_all_on();
+            
+            while (PIND && keypad_activator ) {
+            
+            if (PIND & 0b00010000) {
+                // Line 1
+                keypad_reset_all_on();
+                setpin(PC, 0);
+                if (PIND & 0b00010000) {
+                    lcd_data('3');
+                    break;
+                } else {
+                    keypad_reset_all_on();
+                    setpin(PC, 1);
+                    if (PIND & 0b00010000) {
+                        lcd_data('2');
+                        break;
+                    } else {
+                        keypad_reset_all_on();
+                        setpin(PC, 2);
+                        if (PIND & 0b00010000) {
+                            lcd_data('1');
+                            break;
+                        }
+                    }
+                }
+            } else if (PIND & 0b00100000) {
+                // Line 2
+                keypad_reset_all_on();
+                setpin(PC, 0);
+                if (PIND & 0b00100000) {
+                    lcd_data('6');
+                    break;
+                } else {
+                    keypad_reset_all_on();
+                    setpin(PC, 1);
+                    if (PIND & 0b00100000) {
+                        lcd_data('5');
+                        break;
+                    } else {
+                        keypad_reset_all_on();
+                        setpin(PC, 2);
+                        if (PIND & 0b00100000) {
+                            lcd_data('4');
+                            break;
+                        }
+                    }
+                }
+            } else if (PIND & 0b01000000) {
+                // Line 3
+                lcd_data_str(str3);
+            } else if (PIND & 0b10000000) {
+                // Line 4
+                lcd_data_str(str4);
+            } else {
+                // Nothing
+            }
 
-void init_pushBTNS() {
-    setpinIN(PC, B0);
-    setpinIN(PC, B1);
+        } 
+            _delay_ms(200);
 }
 
-void init_allLeds() {
-    setpinOUT(PD, mled0);
-    setpinOUT(PD, mled1);
+void keypad_set_all_on() {
+    setpin(PC, 0);
+    setpin(PC, 1);
+    setpin(PC, 2);
+    _delay_ms(5);
+}
 
-    resetpin(PD, mled0);
-    resetpin(PD, mled1);
+void keypad_reset_all_on() {
+    resetpin(PC, 0);
+    resetpin(PC, 1);
+    resetpin(PC, 2);
 }
