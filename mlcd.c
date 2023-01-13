@@ -56,7 +56,7 @@ void lcd_init() {
     lcd_cmd(LCD_cmd_CLEAR); // CLEAR command
     
     lcd_cmd(LCD_cmd_ENTRY_MODE);
-    
+    lcd_cmd(0x28);
     lcd_cmd(LCD_cmd_D_ON_C_OFF);
 
     _delay_ms(50);

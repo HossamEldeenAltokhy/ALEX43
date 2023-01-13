@@ -18,7 +18,7 @@
 #define LCD_EN      PB3
 
 // To enable 8bit mode uncomment next line, To enable 4 bit mode comment next line.
-#define LCD_8bit_MODE  
+//#define LCD_8bit_MODE  
 
 #ifdef LCD_8bit_MODE 
 #define LCD_cmd_MODE 0x38

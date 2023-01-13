@@ -24,21 +24,21 @@
 void init_INT0(char INT0_mode);
 char letter = 0 ;
 char str[]  ="INT0 is ON";
-ISR()
+
 ISR(INT0_vect){
     lcd_clear();
     lcd_data_str(str);
-    _delay_ms(500);
+//    _delay_ms(500);
 }
 
 
 int main(void) {
     // Static Design
+    kit_setup();
     
     lcd_init();
 
-    setportIN(PC);
-    setportOUT(PD);
+    
 
     init_INT0(Any_Edge);
     //Enable for Global Interrupt Flag
@@ -46,11 +46,10 @@ int main(void) {
     
     // Dynamic Design
     while (1) {
-        if (readPin(PC, 0)) {
-            setpin(PD, 0);
-        } else {
-            resetpin(PD, 0);
-        }
+        
+//        if(isPressed(BTN2)){
+//            lcd_data_str(str);
+//        }
 
         while (1)
             lcd_data(letter++);
@@ -90,6 +89,7 @@ void init_INT0(char INT0_mode) {
     // Enable for INT0 (Individual Interrupt Enable)
     GICR |= (1<<INT0);
 }
+
 void init_INT1(char INT1_mode) {
     switch (INT1_mode) {
         case Rising_Edge:
