@@ -14,136 +14,86 @@
 #include "mlcd.h"
 #include "mkit.h"
 
-#define Rising_Edge  3   // 0b00000011
-#define Falling_Edge 2   // 0b00000010
-#define Any_Edge     1   // 0b00000001
-#define Low_Level    0   // 0b00000000
+#define CH0     0   // 00000
+#define CH1     1   // 00001
+#define CH2     2   // 00011
+#define CH3     3   // 00100
+#define CH4     4   
+#define CH5     5
+#define CH6     6
+#define CH7     7   // 00111
+
+#define Ref_AVCC   1
+#define Ref_2_56   3
+#define Ref_AREF   0
+
+#define PRE_2      0
+#define PRE_4      2
+#define PRE_8      3
+#define PRE_16     4
+#define PRE_32     5
+#define PRE_64     6
+#define PRE_128    7
 
 
 
-void init_INT0(char INT0_mode);
-char letter = 0 ;
-char str[]  ="INT0 is ON";
-
-ISR(INT0_vect){
-    lcd_clear();
-    lcd_data_str(str);
-//    _delay_ms(500);
+void selectCH(char CH){
+    ADMUX &= 0xE0; //11100000
+    ADMUX |= CH;
+}
+void selectREF(char REF){
+    ADMUX &= 0x3F; // 00111111
+    ADMUX |= (REF<<6);
 }
 
+void selectFREQ(char freq){
+    ADCSRA &= 0xF8; // 11111000
+    ADCSRA |= freq;
+}
+
+void ADC_EN(){
+    ADCSRA |= (1<<ADEN);
+}
+void ADC_START(){
+    ADCSRA |= (1<<ADSC);
+}
 
 int main(void) {
     // Static Design
-    kit_setup();
-    
     lcd_init();
-
+    // Select CH
+    // ADMUX ( CH Selection)
+    selectCH(CH1);  // 00000000
     
-
-    init_INT0(Any_Edge);
-    //Enable for Global Interrupt Flag
-    sei();
-    
+    // Select Ref
+    selectREF(Ref_AVCC);
+    // Select Freq
+    selectFREQ(PRE_128);
+    // Enable ADC
+    ADC_EN();
+    // *** Operate .....
+    int result =0 ;
     // Dynamic Design
     while (1) {
-        
-//        if(isPressed(BTN2)){
-//            lcd_data_str(str);
-//        }
 
-        while (1)
-            lcd_data(letter++);
+        ADC_START();
+       // Check FLAG  ADIF
+        while(!(ADCSRA & (1<<ADIF)));
+        // Read ADC DATA Register
+//        PORTC = ADCL;
+//        PORTD = ADCH;
+           
+        result = ADCL;
+        result |= (ADCH<<8);
+        
+        lcd_clear();
+        lcd_data_num(result); //*4.8828125
+        lcd_data('\'');
+        lcd_data('C');
+        _delay_ms(50);
 
     }
 
     return 0;
 }
 
-
-void init_INT0(char INT0_mode) {
-    // Select Interrupt Mode (Sense Control)
-    switch (INT0_mode) {
-        case Rising_Edge:
-            //            ISC01 = 1, ISC00 =1
-            MCUCR |= (1<<ISC00);
-            MCUCR |= (1<<ISC01);
-            break;
-        case Falling_Edge:
-            //            ISC01 = 1, ISC00 =0
-            MCUCR &= ~(1 << ISC00);
-            MCUCR |= (1 << ISC01);
-            break;
-        case Any_Edge:
-            //            ISC01 = 0, ISC00 =1
-            MCUCR |= (1 << ISC00);
-            MCUCR &= ~(1 << ISC01);
-            break;
-        case Low_Level:
-            //            ISC01 = 0, ISC00 =0
-            MCUCR &= ~(1 << ISC00);
-            MCUCR &= ~(1 << ISC01);
-            break;
-        default:
-            break;
-    }
-    // Enable for INT0 (Individual Interrupt Enable)
-    GICR |= (1<<INT0);
-}
-
-void init_INT1(char INT1_mode) {
-    switch (INT1_mode) {
-        case Rising_Edge:
-            //            ISC11 = 1, ISC10 =1
-            MCUCR |= (1<<ISC10);
-            MCUCR |= (1<<ISC11);
-            break;
-        case Falling_Edge:
-            //            ISC11 = 1, ISC10 =0
-            MCUCR &= ~(1 << ISC10);
-            MCUCR |= (1 << ISC11);
-            break;
-        case Any_Edge:
-            //            ISC11 = 0, ISC10 =1
-            MCUCR |= (1 << ISC10);
-            MCUCR &= ~(1 << ISC11);
-            break;
-        case Low_Level:
-            //            ISC11 = 0, ISC10 =0
-            MCUCR &= ~(1 << ISC10);
-            MCUCR &= ~(1 << ISC11);
-            break;
-        default:
-            break;
-    }
-    
-    GICR |= (1<<INT1);
-}
-
-
-
-////////////////////////
-void init_INT0_(char INT0_mode){
-    MCUCR &= ~(3<<0);
-    MCUCR |= INT0_mode; // R=11,F=10,L=00,A=01
-   // 0bxxxxxxxx | 0b00000011 = 0bxxxxxx11
-}
-void init_INT1_(char INT1_mode){
-    MCUCR &= ~(3<<2);
-    MCUCR |= (INT1_mode<<2); // R=11,F=10,L=00,A=01
-   // 0bxxxxxxxx | 0b00000011 = 0bxxxxxx11
-}
-//////////////////////////////////
-
-
-
-void init_INT2(char INT2_mode){
-    if(INT2_mode == Falling_Edge){
-        MCUCSR &= ~(1<<ISC2);
-    }else if( INT2_mode == Rising_Edge){
-        MCUCSR |= (1<<ISC2);
-    }else{
-        // Nothing
-    }
-    
-    GICR |= (1<<INT2);
-}
