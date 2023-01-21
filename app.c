@@ -58,39 +58,55 @@ void ADC_START(){
     ADCSRA |= (1<<ADSC);
 }
 
-int main(void) {
-    // Static Design
-    lcd_init();
+void ADC_INT_EN(){
+    ADCSRA |= (1<<ADIE);
+}
+
+void init_ADC(char CH, char Ref, char freq){
     // Select CH
     // ADMUX ( CH Selection)
-    selectCH(CH1);  // 00000000
+    selectCH(CH);  // 00000000
     
     // Select Ref
-    selectREF(Ref_AVCC);
+    selectREF(Ref);
     // Select Freq
-    selectFREQ(PRE_128);
+    selectFREQ(freq);
+    // ADC Interrupt Enable
+    ADC_INT_EN();
     // Enable ADC
     ADC_EN();
     // *** Operate .....
-    int result =0 ;
+}
+
+
+ISR(ADC_vect){
+        int result =0 ;
+        // Read ADC DATA Register
+        result = ADCL;
+        result |= (ADCH<<8);
+        int val = result*4.8828125;
+        if(val >3000){
+            Buzzer_on();
+        }else{
+            Buzzer_off();
+        }
+        lcd_clear();
+        lcd_data_num(val); 
+        lcd_data('m');
+        lcd_data('V');
+        _delay_ms(50);
+}
+
+int main(void) {
+    // Static Design
+    lcd_init();
+    init_ADC(CH1, Ref_AVCC, PRE_128);
+    
+    sei();
     // Dynamic Design
     while (1) {
 
         ADC_START();
-       // Check FLAG  ADIF
-        while(!(ADCSRA & (1<<ADIF)));
-        // Read ADC DATA Register
-//        PORTC = ADCL;
-//        PORTD = ADCH;
-           
-        result = ADCL;
-        result |= (ADCH<<8);
-        
-        lcd_clear();
-        lcd_data_num(result); //*4.8828125
-        lcd_data('\'');
-        lcd_data('C');
-        _delay_ms(50);
 
     }
 
