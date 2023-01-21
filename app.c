@@ -85,11 +85,7 @@ ISR(ADC_vect){
         result = ADCL;
         result |= (ADCH<<8);
         int val = result*4.8828125;
-        if(val >3000){
-            Buzzer_on();
-        }else{
-            Buzzer_off();
-        }
+
         lcd_clear();
         lcd_data_num(val); 
         lcd_data('m');
@@ -105,9 +101,17 @@ int main(void) {
     sei();
     // Dynamic Design
     while (1) {
-
+        //select CH1
+        selectCH(CH1);
         ADC_START();
-
+        _delay_ms(500);
+        //select CH0
+        selectCH(CH0);
+        ADC_START();
+        _delay_ms(500);
+        
+        //check 
+        
     }
 
     return 0;
