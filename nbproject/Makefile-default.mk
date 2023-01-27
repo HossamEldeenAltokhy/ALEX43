@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=app.c DIO.c mkit.c mlcd.c
+SOURCEFILES_QUOTED_IF_SPACED=app.c DIO.c mkit.c mlcd.c mADC.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/app.o ${OBJECTDIR}/DIO.o ${OBJECTDIR}/mkit.o ${OBJECTDIR}/mlcd.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/app.o.d ${OBJECTDIR}/DIO.o.d ${OBJECTDIR}/mkit.o.d ${OBJECTDIR}/mlcd.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/app.o ${OBJECTDIR}/DIO.o ${OBJECTDIR}/mkit.o ${OBJECTDIR}/mlcd.o ${OBJECTDIR}/mADC.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/app.o.d ${OBJECTDIR}/DIO.o.d ${OBJECTDIR}/mkit.o.d ${OBJECTDIR}/mlcd.o.d ${OBJECTDIR}/mADC.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/app.o ${OBJECTDIR}/DIO.o ${OBJECTDIR}/mkit.o ${OBJECTDIR}/mlcd.o
+OBJECTFILES=${OBJECTDIR}/app.o ${OBJECTDIR}/DIO.o ${OBJECTDIR}/mkit.o ${OBJECTDIR}/mlcd.o ${OBJECTDIR}/mADC.o
 
 # Source Files
-SOURCEFILES=app.c DIO.c mkit.c mlcd.c
+SOURCEFILES=app.c DIO.c mkit.c mlcd.c mADC.c
 
 
 
@@ -118,6 +118,12 @@ ${OBJECTDIR}/mlcd.o: mlcd.c  .generated_files/flags/default/5ab53526995b8c513a18
 	@${RM} ${OBJECTDIR}/mlcd.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/mlcd.o.d" -MT "${OBJECTDIR}/mlcd.o.d" -MT ${OBJECTDIR}/mlcd.o -o ${OBJECTDIR}/mlcd.o mlcd.c 
 	
+${OBJECTDIR}/mADC.o: mADC.c  .generated_files/flags/default/cf7e6385384d5dc8da592a2ee35569d722d8e264 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/mADC.o.d 
+	@${RM} ${OBJECTDIR}/mADC.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/mADC.o.d" -MT "${OBJECTDIR}/mADC.o.d" -MT ${OBJECTDIR}/mADC.o -o ${OBJECTDIR}/mADC.o mADC.c 
+	
 else
 ${OBJECTDIR}/app.o: app.c  .generated_files/flags/default/eec13079188153f63ec4cc5cfde5800d3dd92e16 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
 	@${MKDIR} "${OBJECTDIR}" 
@@ -142,6 +148,12 @@ ${OBJECTDIR}/mlcd.o: mlcd.c  .generated_files/flags/default/61d72daa09aac9731250
 	@${RM} ${OBJECTDIR}/mlcd.o.d 
 	@${RM} ${OBJECTDIR}/mlcd.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/mlcd.o.d" -MT "${OBJECTDIR}/mlcd.o.d" -MT ${OBJECTDIR}/mlcd.o -o ${OBJECTDIR}/mlcd.o mlcd.c 
+	
+${OBJECTDIR}/mADC.o: mADC.c  .generated_files/flags/default/37cc966fb8b530d9d5ea0ce594a937c9fc1e4af0 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/mADC.o.d 
+	@${RM} ${OBJECTDIR}/mADC.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/mADC.o.d" -MT "${OBJECTDIR}/mADC.o.d" -MT ${OBJECTDIR}/mADC.o -o ${OBJECTDIR}/mADC.o mADC.c 
 	
 endif
 

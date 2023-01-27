@@ -7,6 +7,7 @@
       <itemPath>DIO.h</itemPath>
       <itemPath>mkit.h</itemPath>
       <itemPath>mlcd.h</itemPath>
+      <itemPath>mADC.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -19,6 +20,7 @@
       <itemPath>DIO.c</itemPath>
       <itemPath>mkit.c</itemPath>
       <itemPath>mlcd.c</itemPath>
+      <itemPath>mADC.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

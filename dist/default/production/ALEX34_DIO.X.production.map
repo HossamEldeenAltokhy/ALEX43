@@ -60,6 +60,9 @@ Discarded input sections
  .text          0x0000000000000000        0x0 build/default/production/mlcd.o
  .data          0x0000000000000000        0x0 build/default/production/mlcd.o
  .bss           0x0000000000000000        0x0 build/default/production/mlcd.o
+ .text          0x0000000000000000        0x0 build/default/production/mADC.o
+ .data          0x0000000000000000        0x0 build/default/production/mADC.o
+ .bss           0x0000000000000000        0x0 build/default/production/mADC.o
  .text          0x0000000000000000        0x0 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fixsfsi.o)
  .data          0x0000000000000000        0x0 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fixsfsi.o)
  .bss           0x0000000000000000        0x0 c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a(fixsfsi.o)
@@ -174,6 +177,7 @@ LOAD build/default/production/app.o
 LOAD build/default/production/DIO.o
 LOAD build/default/production/mkit.o
 LOAD build/default/production/mlcd.o
+LOAD build/default/production/mADC.o
 START GROUP
 LOAD c:/program files/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libm.a
 END GROUP
@@ -429,6 +433,7 @@ END GROUP
  .comment       0x000000000000002f       0x30 build/default/production/DIO.o
  .comment       0x000000000000002f       0x30 build/default/production/mkit.o
  .comment       0x000000000000002f       0x30 build/default/production/mlcd.o
+ .comment       0x000000000000002f       0x30 build/default/production/mADC.o
 
 .stack.descriptors.hdr
                 0x0000000000000000       0xe0
@@ -480,65 +485,73 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x0000000000000000      0x190
+.debug_aranges  0x0000000000000000      0x1a8
  *(.debug_aranges)
  .debug_aranges
-                0x0000000000000000       0x60 build/default/production/app.o
+                0x0000000000000000       0x28 build/default/production/app.o
  .debug_aranges
-                0x0000000000000060       0x68 build/default/production/DIO.o
+                0x0000000000000028       0x68 build/default/production/DIO.o
  .debug_aranges
-                0x00000000000000c8       0x78 build/default/production/mkit.o
+                0x0000000000000090       0x78 build/default/production/mkit.o
  .debug_aranges
-                0x0000000000000140       0x50 build/default/production/mlcd.o
+                0x0000000000000108       0x50 build/default/production/mlcd.o
+ .debug_aranges
+                0x0000000000000158       0x50 build/default/production/mADC.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000     0x1d33
+.debug_info     0x0000000000000000     0x1f5b
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x0000000000000000      0x4e6 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_info    0x00000000000004e6      0x5c9 build/default/production/app.o
- .debug_info    0x0000000000000aaf      0x428 build/default/production/DIO.o
- .debug_info    0x0000000000000ed7      0x6ce build/default/production/mkit.o
- .debug_info    0x00000000000015a5      0x78e build/default/production/mlcd.o
+ .debug_info    0x00000000000004e6      0x46e build/default/production/app.o
+ .debug_info    0x0000000000000954      0x428 build/default/production/DIO.o
+ .debug_info    0x0000000000000d7c      0x6ce build/default/production/mkit.o
+ .debug_info    0x000000000000144a      0x78e build/default/production/mlcd.o
+ .debug_info    0x0000000000001bd8      0x383 build/default/production/mADC.o
 
-.debug_abbrev   0x0000000000000000      0x96c
+.debug_abbrev   0x0000000000000000      0x9d6
  *(.debug_abbrev)
  .debug_abbrev  0x0000000000000000      0x4a3 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_abbrev  0x00000000000004a3      0x170 build/default/production/app.o
- .debug_abbrev  0x0000000000000613       0xa9 build/default/production/DIO.o
- .debug_abbrev  0x00000000000006bc       0xe0 build/default/production/mkit.o
- .debug_abbrev  0x000000000000079c      0x1d0 build/default/production/mlcd.o
+ .debug_abbrev  0x00000000000004a3      0x131 build/default/production/app.o
+ .debug_abbrev  0x00000000000005d4       0xa9 build/default/production/DIO.o
+ .debug_abbrev  0x000000000000067d       0xe0 build/default/production/mkit.o
+ .debug_abbrev  0x000000000000075d      0x1d0 build/default/production/mlcd.o
+ .debug_abbrev  0x000000000000092d       0xa9 build/default/production/mADC.o
 
-.debug_line     0x0000000000000000      0xa4a
+.debug_line     0x0000000000000000      0xab2
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x0000000000000000      0x119 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_line    0x0000000000000119      0x216 build/default/production/app.o
- .debug_line    0x000000000000032f      0x2e2 build/default/production/DIO.o
- .debug_line    0x0000000000000611      0x208 build/default/production/mkit.o
- .debug_line    0x0000000000000819      0x231 build/default/production/mlcd.o
+ .debug_line    0x0000000000000119      0x153 build/default/production/app.o
+ .debug_line    0x000000000000026c      0x2e2 build/default/production/DIO.o
+ .debug_line    0x000000000000054e      0x208 build/default/production/mkit.o
+ .debug_line    0x0000000000000756      0x231 build/default/production/mlcd.o
+ .debug_line    0x0000000000000987      0x12b build/default/production/mADC.o
 
-.debug_frame    0x0000000000000000      0x340
+.debug_frame    0x0000000000000000      0x354
  *(.debug_frame)
- .debug_frame   0x0000000000000000      0x108 build/default/production/app.o
- .debug_frame   0x0000000000000108       0xb4 build/default/production/DIO.o
- .debug_frame   0x00000000000001bc       0xd4 build/default/production/mkit.o
- .debug_frame   0x0000000000000290       0xb0 build/default/production/mlcd.o
+ .debug_frame   0x0000000000000000       0x8c build/default/production/app.o
+ .debug_frame   0x000000000000008c       0xb4 build/default/production/DIO.o
+ .debug_frame   0x0000000000000140       0xd4 build/default/production/mkit.o
+ .debug_frame   0x0000000000000214       0xb0 build/default/production/mlcd.o
+ .debug_frame   0x00000000000002c4       0x90 build/default/production/mADC.o
 
-.debug_str      0x0000000000000000      0x236
+.debug_str      0x0000000000000000      0x249
  *(.debug_str)
  .debug_str     0x0000000000000000      0x196 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avr5/memx-const/crtatmega32a.o
- .debug_str     0x0000000000000196       0x3d build/default/production/app.o
- .debug_str     0x00000000000001d3       0x10 build/default/production/DIO.o
- .debug_str     0x00000000000001e3       0x27 build/default/production/mkit.o
- .debug_str     0x000000000000020a       0x2c build/default/production/mlcd.o
+ .debug_str     0x0000000000000196       0x50 build/default/production/app.o
+ .debug_str     0x00000000000001e6       0x10 build/default/production/DIO.o
+ .debug_str     0x00000000000001f6       0x27 build/default/production/mkit.o
+ .debug_str     0x000000000000021d       0x2c build/default/production/mlcd.o
+ .debug_str     0x0000000000000249        0x0 build/default/production/mADC.o
 
 .debug_loc      0x0000000000000000      0x84b
  *(.debug_loc)
- .debug_loc     0x0000000000000000      0x18e build/default/production/app.o
- .debug_loc     0x000000000000018e      0x30d build/default/production/DIO.o
- .debug_loc     0x000000000000049b      0x144 build/default/production/mkit.o
- .debug_loc     0x00000000000005df      0x26c build/default/production/mlcd.o
+ .debug_loc     0x0000000000000000       0xb2 build/default/production/app.o
+ .debug_loc     0x00000000000000b2      0x30d build/default/production/DIO.o
+ .debug_loc     0x00000000000003bf      0x144 build/default/production/mkit.o
+ .debug_loc     0x0000000000000503      0x26c build/default/production/mlcd.o
+ .debug_loc     0x000000000000076f       0xdc build/default/production/mADC.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -558,12 +571,13 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x0000000000000000      0x150
+.debug_ranges   0x0000000000000000      0x158
  *(.debug_ranges)
- .debug_ranges  0x0000000000000000       0x50 build/default/production/app.o
- .debug_ranges  0x0000000000000050       0x58 build/default/production/DIO.o
- .debug_ranges  0x00000000000000a8       0x68 build/default/production/mkit.o
- .debug_ranges  0x0000000000000110       0x40 build/default/production/mlcd.o
+ .debug_ranges  0x0000000000000000       0x18 build/default/production/app.o
+ .debug_ranges  0x0000000000000018       0x58 build/default/production/DIO.o
+ .debug_ranges  0x0000000000000070       0x68 build/default/production/mkit.o
+ .debug_ranges  0x00000000000000d8       0x40 build/default/production/mlcd.o
+ .debug_ranges  0x0000000000000118       0x40 build/default/production/mADC.o
 
 .debug_macro
  *(.debug_macro)
@@ -690,7 +704,7 @@ LOAD data_init
 
 .text.init_ADC  0x00000000000007ac       0x26
  .text.init_ADC
-                0x00000000000007ac       0x26 build/default/production/app.o
+                0x00000000000007ac       0x26 build/default/production/mADC.o
                 0x00000000000007ac                init_ADC
 
 .text.avrlibc.fplib
@@ -724,7 +738,7 @@ LOAD data_init
 .text.selectREF
                 0x000000000000086a       0x16
  .text.selectREF
-                0x000000000000086a       0x16 build/default/production/app.o
+                0x000000000000086a       0x16 build/default/production/mADC.o
                 0x000000000000086a                selectREF
 
 .text.avrlibc   0x0000000000000880       0x16
@@ -737,28 +751,28 @@ LOAD data_init
                 0x0000000000000896       0x12 build/default/production/mkit.o
                 0x0000000000000896                kit_setup
 
-.text.selectCH  0x00000000000008a8        0xe
- .text.selectCH
-                0x00000000000008a8        0xe build/default/production/app.o
-                0x00000000000008a8                selectCH
-
-.text.selectFREQ
-                0x00000000000008b6        0xe
- .text.selectFREQ
-                0x00000000000008b6        0xe build/default/production/app.o
-                0x00000000000008b6                selectFREQ
-
 .text.init_Buzzer
-                0x00000000000008c4        0xe
+                0x00000000000008a8        0xe
  .text.init_Buzzer
-                0x00000000000008c4        0xe build/default/production/mkit.o
-                0x00000000000008c4                init_Buzzer
+                0x00000000000008a8        0xe build/default/production/mkit.o
+                0x00000000000008a8                init_Buzzer
 
 .text.init_Relay
-                0x00000000000008d2        0xe
+                0x00000000000008b6        0xe
  .text.init_Relay
-                0x00000000000008d2        0xe build/default/production/mkit.o
-                0x00000000000008d2                init_Relay
+                0x00000000000008b6        0xe build/default/production/mkit.o
+                0x00000000000008b6                init_Relay
+
+.text.selectCH  0x00000000000008c4        0xe
+ .text.selectCH
+                0x00000000000008c4        0xe build/default/production/mADC.o
+                0x00000000000008c4                selectCH
+
+.text.selectFREQ
+                0x00000000000008d2        0xe
+ .text.selectFREQ
+                0x00000000000008d2        0xe build/default/production/mADC.o
+                0x00000000000008d2                selectFREQ
 
 .text.avrlibc.fplib
                 0x00000000000008e0        0xe
@@ -845,17 +859,17 @@ LOAD data_init
                 0x000000000000094e                __vector_20
 
 .text.ADC_EN    0x0000000000000952        0x4
- .text.ADC_EN   0x0000000000000952        0x4 build/default/production/app.o
+ .text.ADC_EN   0x0000000000000952        0x4 build/default/production/mADC.o
                 0x0000000000000952                ADC_EN
 
 .text.ADC_START
                 0x0000000000000956        0x4
  .text.ADC_START
-                0x0000000000000956        0x4 build/default/production/app.o
+                0x0000000000000956        0x4 build/default/production/mADC.o
                 0x0000000000000956                ADC_START
 
 .text.ADC_INT_EN
                 0x000000000000095a        0x4
  .text.ADC_INT_EN
-                0x000000000000095a        0x4 build/default/production/app.o
+                0x000000000000095a        0x4 build/default/production/mADC.o
                 0x000000000000095a                ADC_INT_EN

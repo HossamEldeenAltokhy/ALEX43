@@ -1,4 +1,5 @@
-build/default/production/app.o.d build/default/production/app.o: app.c \
+build/default/production/mADC.o.d build/default/production/mADC.o: mADC.c \
+ mADC.h \
  c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\xc.h \
  c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\cci.h \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\io.h \
@@ -11,12 +12,9 @@ build/default/production/app.o.d build/default/production/app.o: app.c \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\common.h \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\version.h \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\fuse.h \
- c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\lock.h \
- c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\interrupt.h \
- c:\program\ files\microchip\xc8\v2.32\avr\avr\include\util\delay.h \
- c:\program\ files\microchip\xc8\v2.32\avr\avr\include\util\delay_basic.h \
- c:\program\ files\microchip\xc8\v2.32\avr\avr\include\math.h DIO.h \
- mADC.h mlcd.h mkit.h
+ c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\lock.h
+
+mADC.h:
 
 c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\xc.h:
 
@@ -43,19 +41,3 @@ c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\version.h:
 c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\fuse.h:
 
 c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\lock.h:
-
-c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\interrupt.h:
-
-c:\program\ files\microchip\xc8\v2.32\avr\avr\include\util\delay.h:
-
-c:\program\ files\microchip\xc8\v2.32\avr\avr\include\util\delay_basic.h:
-
-c:\program\ files\microchip\xc8\v2.32\avr\avr\include\math.h:
-
-DIO.h:
-
-mADC.h:
-
-mlcd.h:
-
-mkit.h:
