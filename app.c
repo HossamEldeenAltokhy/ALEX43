@@ -31,11 +31,23 @@
 #define Timer0_PWM          2       // (WGM01 = 0, WGM00 = 1)
 #define Timer0_FPWM         3       // (WGM01 = 1, WGM00 = 1)
 
-// Timer0_ Normal mode
+// Timer0_OC0_Normal modes
 #define Timer0_Normal_OC0_disconnect    0
 #define Timer0_Normal_OC0_toggle        1
 #define Timer0_Normal_OC0_clear         2
 #define Timer0_Normal_OC0_set           3
+
+// Timer0_OC0_PWM modes
+#define Timer0_PWM_OC0_disconnect       0
+#define Timer0_PWM_OC0_clear_set        2
+#define Timer0_PWM_OC0_set_clear        3
+
+// Timer0_OC0_FPWM modes
+#define Timer0_FPWM_OC0_disconnect       0
+#define Timer0_FPWM_OC0_clear_set        2
+#define Timer0_FPWM_OC0_set_clear        3
+
+#define DutyCycle_50                     50
 
 void Timer0_select_CLK(char Clock_Select);
 void Timer0_select_Mode(char Timer0_mode);
@@ -43,29 +55,23 @@ void Timer0_select_OC0_mode(char Timer0_OC0_mode);
 void Timer0_enable_OVIE();
 void Timer0_enable_OCIE();
 
+void Timer0_set_DutyCycle(char DutyCycle_percentage);
 
-ISR(TIMER0_COMP_vect){
-   
-    int x = 66 * 180;
-   PORTA ^= 0xff;
-    
-}
-
+void init_Timer0(char Timer0_mode,
+        char Timer0_OC0_mode,
+        char Timer0_OC0_DutyCycle,
+        char Timer0_Prescalar
+        );
 int main(void) {
     // Static Design
     setportOUT(PA);
     kit_setup();
     setpinOUT(PB, 3);
-    // select Timer mode
-    Timer0_select_Mode(Timer0_CTC);
-    Timer0_select_OC0_mode(Timer0_Normal_OC0_toggle);
-    // set OCR0 with value
-    OCR0 = 127;
-    // Enable the required Interrupt
-    Timer0_enable_OCIE();
-//    Timer0_enable_OVIE();
-    // Select Clock source to start counting
-    Timer0_select_CLK(Timer0_PRE_1024);
+    
+    init_Timer0(Timer0_FPWM,
+            Timer0_FPWM_OC0_set_clear,
+            DutyCycle_50,
+            Timer0_PRE_1024);
     
     sei();
     while (1) {
@@ -127,4 +133,30 @@ void Timer0_enable_OCIE(){
 void Timer0_select_OC0_mode(char Timer0_OC0_mode){
     TCCR0 &= 0xCF;  // 11001111
     TCCR0 |= (Timer0_OC0_mode<<COM00);
+}
+
+void Timer0_set_DutyCycle(char DutyCycle_percentage){
+    // DutyCycle = t1/t2*100 %   , t1-> High period, t2 -> Total period
+    // DutyCycle = OCR0/255*100 %
+    
+    OCR0 = (100-DutyCycle_percentage)*255.0/100.0;
+    
+    
+    
+}
+
+void init_Timer0(
+        char Timer0_mode,   // nlknlkclkcne
+        char Timer0_OC0_mode,  //kenlkenklfe
+        char Timer0_OC0_DutyCycle,   // DutyCycle 0-100%, in case of (PWM or FPWM Only).
+        char Timer0_Prescalar // 
+        ){
+    
+    Timer0_select_Mode(Timer0_mode);
+    Timer0_select_OC0_mode(Timer0_OC0_mode);
+    if(Timer0_mode == Timer0_FPWM || Timer0_mode == Timer0_PWM){
+    Timer0_set_DutyCycle(Timer0_OC0_DutyCycle);
+    }
+    Timer0_select_CLK(Timer0_Prescalar);
+    
 }
