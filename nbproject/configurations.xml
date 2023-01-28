@@ -8,6 +8,7 @@
       <itemPath>mkit.h</itemPath>
       <itemPath>mlcd.h</itemPath>
       <itemPath>mADC.h</itemPath>
+      <itemPath>mconfig.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
