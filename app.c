@@ -62,16 +62,27 @@ void init_Timer0(char Timer0_mode,
         char Timer0_OC0_DutyCycle,
         char Timer0_Prescalar
         );
+
+
+ISR(TIMER0_OVF_vect){
+    // Timer Overflow
+}
+ISR(TIMER0_COMP_vect){
+    // Compare Match
+}
 int main(void) {
     // Static Design
     setportOUT(PA);
     kit_setup();
     setpinOUT(PB, 3);
     
-    init_Timer0(Timer0_FPWM,
-            Timer0_FPWM_OC0_set_clear,
+    init_Timer0(Timer0_Normal,
+            Timer0_Normal_OC0_disconnect,
             DutyCycle_50,
             Timer0_PRE_1024);
+    OCR0 = 200;
+    Timer0_enable_OVIE();
+    Timer0_enable_OCIE();
     
     sei();
     while (1) {
