@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=app.c DIO.c mkit.c mlcd.c mADC.c
+SOURCEFILES_QUOTED_IF_SPACED=app.c DIO.c mkit.c mlcd.c mADC.c mTimer.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/app.o ${OBJECTDIR}/DIO.o ${OBJECTDIR}/mkit.o ${OBJECTDIR}/mlcd.o ${OBJECTDIR}/mADC.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/app.o.d ${OBJECTDIR}/DIO.o.d ${OBJECTDIR}/mkit.o.d ${OBJECTDIR}/mlcd.o.d ${OBJECTDIR}/mADC.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/app.o ${OBJECTDIR}/DIO.o ${OBJECTDIR}/mkit.o ${OBJECTDIR}/mlcd.o ${OBJECTDIR}/mADC.o ${OBJECTDIR}/mTimer.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/app.o.d ${OBJECTDIR}/DIO.o.d ${OBJECTDIR}/mkit.o.d ${OBJECTDIR}/mlcd.o.d ${OBJECTDIR}/mADC.o.d ${OBJECTDIR}/mTimer.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/app.o ${OBJECTDIR}/DIO.o ${OBJECTDIR}/mkit.o ${OBJECTDIR}/mlcd.o ${OBJECTDIR}/mADC.o
+OBJECTFILES=${OBJECTDIR}/app.o ${OBJECTDIR}/DIO.o ${OBJECTDIR}/mkit.o ${OBJECTDIR}/mlcd.o ${OBJECTDIR}/mADC.o ${OBJECTDIR}/mTimer.o
 
 # Source Files
-SOURCEFILES=app.c DIO.c mkit.c mlcd.c mADC.c
+SOURCEFILES=app.c DIO.c mkit.c mlcd.c mADC.c mTimer.c
 
 
 
@@ -124,6 +124,12 @@ ${OBJECTDIR}/mADC.o: mADC.c  .generated_files/flags/default/cf7e6385384d5dc8da59
 	@${RM} ${OBJECTDIR}/mADC.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/mADC.o.d" -MT "${OBJECTDIR}/mADC.o.d" -MT ${OBJECTDIR}/mADC.o -o ${OBJECTDIR}/mADC.o mADC.c 
 	
+${OBJECTDIR}/mTimer.o: mTimer.c  .generated_files/flags/default/43f1fc01d4b50993aee6807c752e5f3150e90f87 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/mTimer.o.d 
+	@${RM} ${OBJECTDIR}/mTimer.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/mTimer.o.d" -MT "${OBJECTDIR}/mTimer.o.d" -MT ${OBJECTDIR}/mTimer.o -o ${OBJECTDIR}/mTimer.o mTimer.c 
+	
 else
 ${OBJECTDIR}/app.o: app.c  .generated_files/flags/default/eec13079188153f63ec4cc5cfde5800d3dd92e16 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
 	@${MKDIR} "${OBJECTDIR}" 
@@ -154,6 +160,12 @@ ${OBJECTDIR}/mADC.o: mADC.c  .generated_files/flags/default/37cc966fb8b530d9d5ea
 	@${RM} ${OBJECTDIR}/mADC.o.d 
 	@${RM} ${OBJECTDIR}/mADC.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/mADC.o.d" -MT "${OBJECTDIR}/mADC.o.d" -MT ${OBJECTDIR}/mADC.o -o ${OBJECTDIR}/mADC.o mADC.c 
+	
+${OBJECTDIR}/mTimer.o: mTimer.c  .generated_files/flags/default/4dedf995c1613dd02e8d947ff1dd71610b71c41e .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/mTimer.o.d 
+	@${RM} ${OBJECTDIR}/mTimer.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/mTimer.o.d" -MT "${OBJECTDIR}/mTimer.o.d" -MT ${OBJECTDIR}/mTimer.o -o ${OBJECTDIR}/mTimer.o mTimer.c 
 	
 endif
 
