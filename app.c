@@ -15,58 +15,43 @@
 #include "mkit.h"
 #include "mTimer.h"
 #include "mUART.h"
+#include "mspi.h"
 
-#define SS   4  
-#define MOSI 5
-#define MISO 6
-#define SCK  7
+#define SLAVE1   0
+#define SLAVE2   1
 
-#define SPI_MASTER   1
-#define SPI_SLAVE    0
 
-void init_SPI(char MASTER, char SPI_CLK);
-void SPI_write(char data);
-char SPI_read();
-void SPI_INT_Enable();
-
+void select_slave(char slave_order);
 int main(void) {
     // Static Design
-
+    setpinOUT(PB,PB0);
+    setpinOUT(PB,PB1);
+    setpin(PB, PB0);
+    setpin(PB, PB1);
     init_SPI(SPI_MASTER,0 );
     while (1) {
         // Dynamic Design
-
-        SPI_write('A');
+        select_slave(SLAVE1);
+        SPI_write('A');//01000001
+        
+        select_slave(SLAVE2);
+        SPI_write('B');//01000001
 
     }
 
     return 0;
 }
 
-void init_SPI(char MASTER, char SPI_CLK) {
 
-    if (MASTER) {
-        // Pin Configuration for Master Mode
-        DDRB |= (1<<MOSI)|(1<<SCK)|(1<<SS);
-        // Master Mode
-        SPCR |= (1 << SPE) | (1 << MSTR);
-        SPCR |= (1 << SPR1) | (1 << SPR0);
-    } else {
-        // Pin Configuration for Slave Mode
-        DDRB |= (1<<MISO);
-        // Slave Mode
-        SPCR |= (1 << SPE);
+void select_slave(char slave_order){
+    if(slave_order == SLAVE1){
+        setpin(PB, PB1);
+        resetpin(PB, PB0);
+    }else  if(slave_order == SLAVE2){
+        setpin(PB, PB0);
+        resetpin(PB, PB1);
     }
-
-}
-void SPI_write(char data){
-    SPDR = data;
-    while(!( SPSR &(1<<SPIF)));
-}
-char SPI_read(){
-    while(!( SPSR &(1<<SPIF)));
-    return SPDR;
-}
-void SPI_INT_Enable(){
-    SPCR |= (1<<SPIE);
+    else{
+        
+    }
 }
