@@ -125,3 +125,15 @@ void lcd_data_num(int num) {
     itoa(num, str, 10);
     lcd_data_str(str);
 }
+
+
+void lcd_goto(char row, char coln){
+    // 1st line  >> 0
+    // 2nd line  >> 1
+    if(row == 0){
+        // 0x8X
+        lcd_cmd(0x80+coln);
+    }else if(row == 1){
+        lcd_cmd(0xC0+coln);
+    }
+}

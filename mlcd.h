@@ -36,7 +36,7 @@
 void lcd_init();
 void lcd_data(char data);
 void lcd_data_str(char * pData);
-
+void lcd_goto(char row, char coln);
 
 void lcd_cmd(char cmd);
 void lcd_enable();
